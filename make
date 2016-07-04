@@ -74,4 +74,6 @@ if [ $ADDIP ]; then
 	exit 1
 fi
 
-vivado -nolog -nojournal ./hcode_shell.xpr
+cd xilinx/vc707/VC707_Gen2x8If128/prj
+vivado -nolog -nojournal ./VC707_Gen2x8If128.xpr
+cd ../../..
