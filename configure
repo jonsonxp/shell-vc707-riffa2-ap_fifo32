@@ -79,8 +79,8 @@ esac
 sed -i "/progma_ip_clk/c\assign ip_clk = user_clk_$CLK;//progma_ip_clk" riffa_hdl/hcode_wrapper.v
 echo "success: Updated the clock in ./shell-src/hcode_shell_top.v" 1>&2
 
-sed -i "/progma_clk_sys_to_user/c\set_false_path -from [get_clocks userclk2] -to [get_clocks clk_out"$CLKNUM"_hcode_user_clk_1] #progma_clk_sys_to_user" xilinx/vc707/VC707_Gen2x8If128/constr/VC707_Gen2x8If128.xdc
-sed -i "/progma_clk_user_to_sys/c\set_false_path -from [get_clocks clk_out"$CLKNUM"_hcode_user_clk_1] -to [get_clocks userclk2] #progma_clk_user_to_sys" xilinx/vc707/VC707_Gen2x8If128/constr/VC707_Gen2x8If128.xdc
+sed -i "/progma_clk_sys_to_user/c\set_false_path -from [get_clocks userclk2] -to [get_clocks clk_out"$CLKNUM"_hcode_user_clk_1]; #progma_clk_sys_to_user" xilinx/vc707/VC707_Gen2x8If128/constr/VC707_Gen2x8If128.xdc
+sed -i "/progma_clk_user_to_sys/c\set_false_path -from [get_clocks clk_out"$CLKNUM"_hcode_user_clk_1] -to [get_clocks userclk2]; #progma_clk_user_to_sys" xilinx/vc707/VC707_Gen2x8If128/constr/VC707_Gen2x8If128.xdc
 echo "success: Updated the clock in constrain file ./constrain/hcode_shell.xdc" 1>&2
 
 if [ "$REFERENCE" ]; then

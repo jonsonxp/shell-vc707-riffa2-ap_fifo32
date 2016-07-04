@@ -88,8 +88,8 @@
 #
 
 # clk_out-period-frequency: 1-10-100MHz, 2-6.667-150MHz, 3-5-200MHz, 4-4-250MHz
-set_false_path -from [get_clocks userclk2] -to [get_clocks clk_out3_hcode_user_clk_1] #progma_clk_sys_to_user
-set_false_path -from [get_clocks clk_out3_hcode_user_clk_1] -to [get_clocks userclk2] #progma_clk_user_to_sys
+set_false_path -from [get_clocks userclk2] -to [get_clocks clk_out3_hcode_user_clk_1]; #progma_clk_sys_to_user
+set_false_path -from [get_clocks clk_out3_hcode_user_clk_1] -to [get_clocks userclk2]; #progma_clk_user_to_sys
 
 set_property PACKAGE_PIN AV35 [get_ports PCIE_RESET_N]
 set_property IOSTANDARD LVCMOS18 [get_ports PCIE_RESET_N]
