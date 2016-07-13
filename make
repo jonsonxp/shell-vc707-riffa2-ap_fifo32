@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROGNAME=$(basename $0)
-VERSION="0.0.1"
+VERSION="0.1.1"
 
 usage() {
   echo "usage: ./make" 1>&2

@@ -1,11 +1,11 @@
 #!/bin/bash
 PROGNAME=$(basename $0)
-VERSION="0.0.1"
+VERSION="0.1.1"
 
 usage() {
-  echo "usage: ./configure.sh" 1>&2
+  echo "usage: ./configure" 1>&2
   echo "Options:" 1>&2
-  echo "    -clk_frequency NUMBER    : the freqency of clock(MHz) in [100,150,200,250]." 1>&2
+  echo "    -clk NUMBER    : clock frequency in MHz (100, 150, 200 or 250)." 1>&2
   echo "    -reference STRING     : The reference of code of ip in shell." 1>&2
   exit 1
 }
@@ -13,7 +13,7 @@ usage() {
 for i in "$@"
 do
 case $i in
-	    '-h'|'--help' )
+        '-h'|'--help' )
             usage
             exit 1
         ;;
@@ -22,56 +22,51 @@ case $i in
             exit 1
             ;;
         -reference)
-        	if [ -z "$2" ]; then
-        		echo "option requires an argument -- $1" 1>&2
-        		exit 1
-        	fi
-        	REFERENCE=$2
-        	shift 2
-        	;;
-        -clk_frequency)
-        	if [ -z "$2" ]; then
-        		echo "option requires an argument -- $1" 1>&2
-        		exit 1
-        	fi
-        	CLKFREQ=$2
-        	shift 2
-        	;;        
+            if [ -z "$2" ]; then
+                echo "option requires an argument -- $1" 1>&2
+                exit 1
+            fi
+            REFERENCE=$2
+            shift 2
+            ;;
+        -clk)
+            if [ -z "$2" ]; then
+                echo "option requires an argument -- $1" 1>&2
+                exit 1
+            fi
+            CLK=$2
+            shift 2
+            ;;        
         -*)
-		shift 2
+        shift 2
         ;;
         *)
         ;;
 esac
 done
 
-if [ -z $CLKFREQ ]; then
+if [ -z $CLK ]; then
     echo "$PROGNAME: too few arguments" 1>&2
-    echo "Try '$PROGNAME --help' for more information." 1>&2
+    usage
     exit 1
 fi
 
 case $CLKFREQ in
 	250)
-	CLK=250
 	CLKNUM=4
 	;;
 	200)
-	CLK=200
 	CLKNUM=3
 	;;
 	150)
-	CLK=150
 	CLKNUM=2
 	;;
 	100)
-	CLK=100
 	CLKNUM=1
 	;;
 	*)
-	echo "Unsupported clock frequency. Only clocks listed below are supported(MHz):"
-	echo "100, 150, 200, 250.
-"
+    echo "Unsupported clock. Only clock frequency (MHz) listed below is supported:"
+    echo "100, 150, 200, 250"
 	exit
 	;;
 esac
