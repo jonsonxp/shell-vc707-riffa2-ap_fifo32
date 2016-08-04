@@ -51,7 +51,7 @@ if [ -z $CLK ]; then
     exit 1
 fi
 
-case $CLKFREQ in
+case $CLK in
 	250)
 	CLKNUM=4
 	;;
